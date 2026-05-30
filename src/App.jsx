@@ -37,7 +37,7 @@ const transformCards = [
     caption: "Kebaya, Kamen & Selendang",
     beforeLabel: "Pakaian Biasa",
     afterLabel: "Busana Adat Wanita",
-    icon: Landmark,
+    icon: Shirt,
     beforeImg: "/images/female-before-1.png",
     afterImg: "/images/female-after-kebaya-1.png",
   },
@@ -192,17 +192,18 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[780px] items-center overflow-hidden bg-cover bg-center px-5"
+      className="relative flex min-h-screen items-center overflow-hidden bg-cover bg-center bg-no-repeat px-5 py-28 lg:py-0"
       style={{
         backgroundImage:
-          "linear-gradient(90deg, rgba(246,239,228,.97) 0%, rgba(246,239,228,.80) 35%, rgba(246,239,228,.12) 72%), linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,.10)), url('images/hero.png')",
+          "linear-gradient(90deg, rgba(246,239,228,.98) 0%, rgba(246,239,228,.86) 33%, rgba(246,239,228,.34) 58%, rgba(246,239,228,.08) 100%), linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)), url('/images/hero.png')",
+        backgroundPosition: "center center",
       }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(255,255,255,.14),transparent_35%)]" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f5ecdf] to-transparent" />
       
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 pt-28 lg:grid-cols-[1.05fr_.95fr]">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-120px)] w-full max-w-7xl grid-cols-1 items-center gap-10 pt-10 lg:grid-cols-[1.05fr_.95fr] lg:pt-20">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
@@ -269,7 +270,7 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="relative hidden min-h-[570px] overflow-visible items-end justify-center lg:flex"
         >
-          <div className="absolute bottom-[94px] right-[58px] z-30 w-[300px] rounded-[24px] border border-white/70 bg-white/90 p-3 shadow-[0_18px_40px_rgba(0,0,0,.16)] backdrop-blur-xl">
+          <div className="absolute bottom-[15px] right-[100px] z-30 w-[300px] rounded-[24px] border border-white/70 bg-white/90 p-3 shadow-[0_18px_40px_rgba(0,0,0,.16)] backdrop-blur-xl xl:right-[22px]">
             <div className="grid grid-cols-[78px_1fr] items-center gap-3">
               <img
                 src="./images/lempuyang.jpeg"
@@ -309,34 +310,39 @@ function TransformationCard({ item, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.12, duration: 0.7, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="group overflow-hidden rounded-[28px] border border-[#d4ad65]/70 bg-[#09251b]/80 shadow-[0_30px_80px_rgba(0,0,0,.36)] backdrop-blur-md"
+      className="group overflow-hidden rounded-[28px] border border-[#d4ad65]/70 bg-[#09251b]/80 shadow-[0_30px_80px_rgba(0,0,0,.36)] backdrop-blur-md transition-all duration-700 hover:-translate-y-3 hover:border-[#d4ad65] hover:shadow-[0_38px_95px_rgba(0,0,0,.42)]"
     >
-      <div className="relative grid h-[390px] grid-cols-2 overflow-hidden">
-        <div className="relative overflow-hidden border-r border-[#d4ad65]/45">
-          <img
-            src={item.beforeImg}
-            alt={`${item.title} sebelum`}
-            className="h-full w-full object-cover object-top transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-[.72]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        </div>
+      <div className="relative h-[430px] overflow-hidden bg-[#061f17]">
+      <img
+        src={item.beforeImg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-45 blur-xl transition-all duration-700 ease-out group-hover:opacity-0"
+      />
 
-        <div className="relative overflow-hidden">
-          <img
-            src={item.afterImg}
-            alt={`${item.title} sesudah`}
-            className="h-full w-full object-cover object-top opacity-0 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
-          />
-          <img
-            src={item.beforeImg}
-            alt="Preview before"
-            className="absolute inset-0 h-full w-full object-cover object-top transition-all duration-700 ease-out group-hover:opacity-0"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        </div>
+      <img
+        src={item.afterImg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-0 blur-xl transition-all duration-700 ease-out group-hover:opacity-45"
+      />
 
-        <div className="absolute left-5 top-5 z-20 flex items-center gap-3 rounded-br-[28px] rounded-tl-[20px] bg-[#071f17]/90 px-5 py-4 text-[#d4ad65] backdrop-blur-md">
-          <Icon size={32} strokeWidth={1.5} />
+      <img
+        src={item.beforeImg}
+        alt={`${item.title} sebelum`}
+        className="absolute inset-0 z-[1] h-full w-full object-contain object-center transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-0"
+      />
+
+      <img
+        src={item.afterImg}
+        alt={`${item.title} sesudah`}
+        className="absolute inset-0 z-[1] h-full w-full object-contain object-center opacity-0 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
+      />
+
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/75 via-black/10 to-black/5 transition-opacity duration-700 group-hover:from-black/65" />
+
+        <div className="absolute left-5 top-5 z-20 flex items-center gap-3 rounded-br-[28px] rounded-tl-[20px] bg-[#071f17]/92 px-5 py-4 text-[#d4ad65] shadow-xl backdrop-blur-md">
+          <Icon size={30} strokeWidth={1.5} />
           <div>
             <p className="text-[11px] font-black uppercase tracking-[0.18em]">
               {isMale ? "For Male" : "For Female"}
@@ -347,33 +353,18 @@ function TransformationCard({ item, index }) {
           </div>
         </div>
 
-        <div className="absolute left-5 bottom-5 z-20 rounded-2xl bg-black/55 px-5 py-4 text-white shadow-xl backdrop-blur-md">
-          <div className="flex items-center gap-3">
-            <div>
-              <p className="text-[12px] font-black uppercase tracking-[0.12em]">Before</p>
-              <p className="mt-1 text-sm font-semibold text-white/90">Casual Visitor</p>
-            </div>
-            <span className="grid h-7 w-7 place-items-center rounded-full border border-white/35 text-white/70">
-              ×
-            </span>
-          </div>
+        <div className="absolute bottom-6 left-6 z-20 rounded-2xl bg-black/55 px-5 py-4 text-white shadow-xl backdrop-blur-md transition-all duration-500 group-hover:bg-[#b8893b]/92">
+          <p className="text-[12px] font-black uppercase tracking-[0.14em] text-white/80 transition-colors duration-500 group-hover:text-white/90">
+            <span className="group-hover:hidden">Before</span>
+            <span className="hidden group-hover:inline">After</span>
+          </p>
+          <p className="mt-1 text-sm font-semibold text-white/95">
+            <span className="group-hover:hidden">{item.beforeLabel}</span>
+            <span className="hidden group-hover:inline">{item.afterLabel}</span>
+          </p>
         </div>
 
-        <div className="absolute right-5 bottom-5 z-20 rounded-2xl bg-[#b8893b]/90 px-5 py-4 text-white opacity-0 shadow-xl backdrop-blur-md transition-all duration-500 group-hover:opacity-100">
-          <div className="flex items-center gap-3">
-            <div>
-              <p className="text-[12px] font-black uppercase tracking-[0.12em]">After</p>
-              <p className="mt-1 text-sm font-semibold">Respectful Traveler</p>
-            </div>
-            <span className="grid h-7 w-7 place-items-center rounded-full border border-white/65 text-white">
-              ✓
-            </span>
-          </div>
-        </div>
-
-        <div className="absolute left-1/2 top-1/2 z-30 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#f5ecdf] text-[#071f17] shadow-[0_12px_28px_rgba(0,0,0,.28)] transition duration-500 group-hover:rotate-180">
-          ↔
-        </div>
+        <div className="absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-[#09251b] to-transparent" />
       </div>
 
       <div className="flex gap-5 px-7 py-5 text-white">
